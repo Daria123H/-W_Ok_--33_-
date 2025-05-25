@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медитація на дихання</title>
+    <link rel="stylesheet" href="styles_home.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="home.php">Головна</a>
+        <a >Медитації</a>
+        <a >Про медитації</a>
+        <a >Увійти</a>
+    </nav>
+</header>
+
+<section id="meditation-breathing">
+    <h1>Медитація на дихання</h1>
+    <p>Ця медитація орієнтована на глибоке дихання, яке дозволяє заспокоїти нервову систему і зосередитися на моменті.</p>
+
+    <h2>Інструкції</h2>
+    <p>1. Сідайте в зручну позу.<br>
+    2. Закрийте очі і почніть повільно вдихати через ніс на 4 рахунки, затримуйте дихання на 4 рахунки, а потім видихайте через рот на 6 рахунків.</p>
+
+    <h3>Тривалість: 5 хвилин</h3>
+    <h2>Подивіться відео медитації:</h2>
+    <!-- Вставка відео з YouTube -->
+    <div id="youtube-video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/kOHSw5KTKw0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</section>
+
+<button onclick="addToFavorite(1, 2)">Додати в улюблене</button>
+<!-- user_id = 1, meditation_id = 2 -->
+
+<script>
+function addToFavorite(userId, meditationId) {
+  const formData = new FormData();
+  formData.append('user_id', userId);
+  formData.append('meditation_id', meditationId);
+
+  fetch("php/add_favorite.php", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(data => {
+    if(data === "added") alert("Додано в улюблене!");
+    else alert("Помилка додавання");
+  });
+}
+</script>
+
+
+<footer>
+    <p>&copy; 2025 Додаток для медитацій</p>
+</footer>
+
+</body>
+</html>
